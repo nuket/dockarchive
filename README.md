@@ -60,40 +60,6 @@ Hierarchy
 
     .
     ├── baselines
-
-
-
-When building the Docker Images, run:
-
-    cpp -I.. -DENABLE_APT_CACHE Dockerfile.in -o Dockerfile
-    docker build .
-
-This should speed builds up considerably, by caching various .deb 
-packages locally.
-
-
-Hierarchy
----------
-
-    .
-    ├── baselines
-
-
-
-When building the Docker Images, run:
-
-    cpp -I.. -DENABLE_APT_CACHE Dockerfile.in -o Dockerfile
-    docker build .
-
-This should speed builds up considerably, by caching various .deb 
-packages locally.
-
-
-Hierarchy
----------
-
-    .
-    ├── baselines
     │   ├── Dockerfile.ubuntu1204
     │   ├── Dockerfile.update-upgrade
     │   └── Maintainer
