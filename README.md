@@ -7,6 +7,29 @@ build various, related Ubuntu images for Docker.
 Creating uniform includable files means that Docker image creation
 will take full advantage of the Docker caching mechanism.
 
+Hierarchy
+---------
+
+    .
+    ├── baselines
+    │   └── Dockerfile.ubuntu1204
+    ├── build-essentials-4.8
+    │   ├── Dockerfile.build-essentials-4.8
+    │   ├── Dockerfile.in
+    │   ├── qt502linux64-buildslave
+    │   │   ├── Dockerfile.in
+    │   │   └── Dockerfile.qt502linux64
+    │   └── qt511linux64-buildslave
+    │       ├── build.sh
+    │       ├── Dockerfile.in
+    │       └── Dockerfile.qt511linux64
+    ├── Dockerfile.run
+    └── packages
+        ├── Dockerfile.add-apt-repository
+        ├── Dockerfile.git
+        ├── Dockerfile.vnc
+        └── Dockerfile.wget
+
 
 Building Images
 ---------------
@@ -16,6 +39,10 @@ and run:
 
     cpp -Xpreprocessor -I.. Dockerfile.in -o Dockerfile
     docker build .
+
+Depending how deep you are in the hierarchy, the -I.. command
+needs to refer to the root of the hierarchy. Otherwise, the preprocessor
+won't be able to find the files to include.
 
 
 License
