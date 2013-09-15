@@ -7,36 +7,6 @@ build various, related Ubuntu images for Docker.
 Creating uniform includable files means that Docker image creation
 will take full advantage of the Docker caching mechanism.
 
-Hierarchy
----------
-
-    .
-    ├── baselines
-    │   ├── Dockerfile.ubuntu1204
-    │   ├── Dockerfile.update-upgrade
-    │   └── Maintainer
-    ├── build-essentials-4.8
-    │   ├── Dockerfile.build-essentials-4.8
-    │   ├── Dockerfile.in
-    │   ├── qt502linux64-buildslave
-    │   │   ├── Dockerfile.in
-    │   │   └── Dockerfile.qt502linux64
-    │   └── qt511linux64-buildslave
-    │       ├── build.sh
-    │       ├── Dockerfile.in
-    │       └── Dockerfile.qt511linux64
-    ├── packages
-    │   ├── Dockerfile.add-apt-repository
-    │   ├── Dockerfile.buildbot-slave
-    │   ├── Dockerfile.enable-apt-cache
-    │   ├── Dockerfile.git
-    │   ├── Dockerfile.run
-    │   ├── Dockerfile.vnc
-    │   └── Dockerfile.wget
-    └── squid-deb-proxy
-        ├── Dockerfile.in
-        └── run.sh
-
 
 Getting Started
 ---------------
@@ -74,6 +44,38 @@ When building the Docker Images, run:
 
 This should speed builds up considerably, by caching various .deb 
 packages locally.
+
+
+Hierarchy
+---------
+
+    .
+    ├── baselines
+    │   ├── Dockerfile.ubuntu1204
+    │   ├── Dockerfile.update-upgrade
+    │   └── Maintainer
+    ├── build-essentials-4.8
+    │   ├── Dockerfile.build-essentials-4.8
+    │   ├── Dockerfile.in
+    │   ├── qt502linux64-buildslave
+    │   │   ├── Dockerfile.in
+    │   │   └── Dockerfile.qt502linux64
+    │   └── qt511linux64-buildslave
+    │       ├── build.sh
+    │       ├── Dockerfile.in
+    │       └── Dockerfile.qt511linux64
+    ├── packages
+    │   ├── Dockerfile.add-apt-repository
+    │   ├── Dockerfile.buildbot-slave
+    │   ├── Dockerfile.enable-apt-cache
+    │   ├── Dockerfile.git
+    │   ├── Dockerfile.run
+    │   ├── Dockerfile.vnc
+    │   └── Dockerfile.wget
+    └── squid-deb-proxy
+        ├── Dockerfile.in
+        └── run.sh
+
 
 
 License
