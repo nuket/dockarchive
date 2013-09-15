@@ -30,6 +30,7 @@ shasum --check "${HASHFILE}"
 
 if [ $? -eq 0 ]; then
     echo "Good to go."
+    chmod u+x "${INSTALLER}"
 else
     echo "Uh-oh. Checksum didn't match."
     echo "Delete ${INSTALLER} and run this script again."
