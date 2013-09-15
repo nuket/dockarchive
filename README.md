@@ -37,6 +37,49 @@ on your Docker host machine, run:
 
     sudo apt-get install -y squid-deb-proxy squid-deb-proxy-client
 
+And add the following line to the squid-deb-proxy configuration /etc/squid-deb-proxy/mirror-dstdomain.acl:
+
+    # PPAs
+    ppa.launchpad.net
+
+And restart the proxy:
+
+    sudo restart squid-deb-proxy
+
+When building the Docker Images, run:
+
+    cpp -I.. -DENABLE_APT_CACHE Dockerfile.in -o Dockerfile
+    docker build .
+
+This should speed builds up considerably, by caching various .deb 
+packages locally.
+
+
+Hierarchy
+---------
+
+    .
+    ├── baselines
+
+
+
+When building the Docker Images, run:
+
+    cpp -I.. -DENABLE_APT_CACHE Dockerfile.in -o Dockerfile
+    docker build .
+
+This should speed builds up considerably, by caching various .deb 
+packages locally.
+
+
+Hierarchy
+---------
+
+    .
+    ├── baselines
+
+
+
 When building the Docker Images, run:
 
     cpp -I.. -DENABLE_APT_CACHE Dockerfile.in -o Dockerfile
