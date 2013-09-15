@@ -1,4 +1,4 @@
-#include "Dockerfile.ubuntu"
-#include "Dockerfile.git"
-#include "Dockerfile.add-apt-repository"
+#include "baselines/Dockerfile.ubuntu"
+#include "packages/Dockerfile.git"
+#include "packages/Dockerfile.add-apt-repository"
 #include "Dockerfile.build-essentials-4.8"
