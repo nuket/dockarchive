@@ -37,12 +37,27 @@ Building Images
 To build the Docker Images, just go into one of the subdirectories
 and run:
 
-    cpp -Xpreprocessor -I.. Dockerfile.in -o Dockerfile
+    cpp -I.. Dockerfile.in -o Dockerfile
     docker build .
 
 Depending how deep you are in the hierarchy, the `-I..` command
 needs to refer to the root of the hierarchy. Otherwise, the preprocessor
 won't be able to find the files to include.
+
+**Recommended:**
+
+To enable the APT package cache (which is a very good idea),
+on your Docker host machine, run:
+
+    sudo apt-get install -y squid-deb-proxy squid-deb-proxy-client
+
+When building the Docker Images, run:
+
+    cpp -I.. -DENABLE_APT_CACHE Dockerfile.in -o Dockerfile
+    docker build .
+
+This should speed builds up considerably, by caching various .deb 
+packages locally.
 
 
 License
