@@ -11,6 +11,8 @@ Building Images
 To build the Docker Images, just go into one of the subdirectories
 and run:
 
-cpp -Xpreprocessor -I.. Dockerfile.in -o Dockerfile
-docker build .
+    cpp -Xpreprocessor -I.. Dockerfile.in -o Dockerfile
+    docker build .
+
+
 
