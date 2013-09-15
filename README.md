@@ -12,7 +12,9 @@ Hierarchy
 
     .
     ├── baselines
-    │   └── Dockerfile.ubuntu1204
+    │   ├── Dockerfile.ubuntu1204
+    │   ├── Dockerfile.update-upgrade
+    │   └── Maintainer
     ├── build-essentials-4.8
     │   ├── Dockerfile.build-essentials-4.8
     │   ├── Dockerfile.in
@@ -23,18 +25,32 @@ Hierarchy
     │       ├── build.sh
     │       ├── Dockerfile.in
     │       └── Dockerfile.qt511linux64
-    ├── Dockerfile.run
-    └── packages
-        ├── Dockerfile.add-apt-repository
-        ├── Dockerfile.git
-        ├── Dockerfile.vnc
-        └── Dockerfile.wget
+    ├── packages
+    │   ├── Dockerfile.add-apt-repository
+    │   ├── Dockerfile.buildbot-slave
+    │   ├── Dockerfile.enable-apt-cache
+    │   ├── Dockerfile.git
+    │   ├── Dockerfile.run
+    │   ├── Dockerfile.vnc
+    │   └── Dockerfile.wget
+    └── squid-deb-proxy
+        ├── Dockerfile.in
+        └── run.sh
+
+
+Getting Started
+---------------
+
+Before building any images, you need to specify who you are, as the
+maintainer of the images you'll be creating:
+
+    echo "MAINTAINER Your Name <email@address.com>" > baselines/Maintainer
 
 
 Building Images
 ---------------
 
-To build the Docker Images, just go into one of the subdirectories
+Then, to build the Docker Images, just go into one of the subdirectories
 and run:
 
     cpp -I.. Dockerfile.in -o Dockerfile
