@@ -40,7 +40,7 @@ and run:
     cpp -Xpreprocessor -I.. Dockerfile.in -o Dockerfile
     docker build .
 
-Depending how deep you are in the hierarchy, the -I.. command
+Depending how deep you are in the hierarchy, the `-I..` command
 needs to refer to the root of the hierarchy. Otherwise, the preprocessor
 won't be able to find the files to include.
 
