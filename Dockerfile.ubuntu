@@ -1,5 +1,5 @@
 FROM ubuntu:12.04
-MAINTAINER Your Name <email@address.com>
+MAINTAINER Max Vilimpoc <max@vilimpoc.org>
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
