@@ -1,8 +1,9 @@
 Dockerfiles
 ===========
 
-Dockerfiles that can be included into other Dockerfiles to 
-build various, related Ubuntu images for Docker.
+A collection of Dockerfiles that can be included into other Dockerfiles to 
+build various, related Ubuntu images for Docker. This is also an attempt 
+to codify best practices.
 
 Creating uniform includable files means that Docker image creation
 will take full advantage of the Docker caching mechanism.
