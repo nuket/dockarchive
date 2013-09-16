@@ -25,5 +25,5 @@ Defines
 
 These can be overriden on the `cpp` command line with `-DBUILDBOT_SLAVE_USERNAME=somethingelse` and so on:
 
-   *   **BUILDBOT_SLAVE_MASTER** tells the Docker image which system to contact as its Buildbot master.
+   *   **BUILDBOT_SLAVE_MASTER** tells the Docker image which host:port to contact as its Buildbot master.
    *   **BUILDBOT_SLAVE_USERNAME** and **BUILDBOT_SLAVE_PASSWORD** are the Buildbot credentials.
