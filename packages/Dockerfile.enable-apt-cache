@@ -1,5 +1,5 @@
-#ifndef SQUID_DEB_PROXY_CLIENT
-#define SQUID_DEB_PROXY_CLIENT
+#ifndef DOCKERFILE_ENABLE_APT_CACHE
+#define DOCKERFILE_ENABLE_APT_CACHE
 
 #ifdef ENABLE_APT_CACHE
 
@@ -14,6 +14,8 @@
 
 RUN /sbin/ip route | awk '/default/ { print "Acquire::http::Proxy \"http://"$3":8000\";" }' > /etc/apt/apt.conf.d/30proxy
 
-#endif
+#// TODO: Possibly add `echo` of the above line to .bashrc
 
-#endif
+#endif // ENABLE_APT_CACHE
+
+#endif // DOCKERFILE_ENABLE_APT_CACHE
