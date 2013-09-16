@@ -3,6 +3,11 @@ Info
 
 Creates a buildbot-master system.
 
+Build
+----
+
+    cpp -I.. -DENABLE_APT_CACHE Dockerfile.in -o Dockerfile
+
 
 Login
 ----
