@@ -13,7 +13,11 @@ To build this Docker image:
 
 To change default settings:
 
-    cpp -DENABLE_APT_CACHE -DBUILDBOT_SLAVE_MASTER="192.168.0.1:9989" -DBUILDBOT_SLAVE_USERNAME="bob" -DBUILDBOT_SLAVE_PASSWORD="password" -I../../.. Dockerfile.in -o Dockerfile
+    cpp -DENABLE_APT_CACHE \
+        -DBUILDBOT_SLAVE_MASTER="192.168.0.1:9989" \
+        -DBUILDBOT_SLAVE_USERNAME="bob" \
+        -DBUILDBOT_SLAVE_PASSWORD="password" \ 
+        -I../../.. Dockerfile.in -o Dockerfile
 
 
 Defines
