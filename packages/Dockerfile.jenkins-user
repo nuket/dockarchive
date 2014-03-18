@@ -8,10 +8,4 @@
 
 RUN useradd -m -d /home/JENKINS_USERNAME -p JENKINS_USERNAME JENKINS_PASSWORD
 
-#// Copy .ssh folder if provided
-#//#ifdef JENKINS_DOT_SSH
-ADD .ssh/ /home/JENKINS_USERNAME/.ssh
-RUN chown -R JENKINS_USERNAME:JENKINS_USERNAME /home/JENKINS_USERNAME/.ssh 
-#//#endif
-
 #endif // DOCKERFILE_JENKINS_USER

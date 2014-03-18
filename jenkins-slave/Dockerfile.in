@@ -1,3 +1,8 @@
 #include "baselines/Dockerfile.ubuntu1210"
 #include "packages/Dockerfile.jenkins-slave"
+
+#// Copy .ssh folder if provided
+ADD .ssh/ /home/JENKINS_USERNAME/.ssh
+RUN chown -R JENKINS_USERNAME:JENKINS_USERNAME /home/JENKINS_USERNAME/.ssh 
+
 #include "packages/Dockerfile.jenkins-slave.run"
