@@ -2,4 +2,5 @@
 *.run
 *.run.sha256
 baselines/Maintainer
+Dockerfile
 

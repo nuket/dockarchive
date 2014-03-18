@@ -1,0 +1,3 @@
+#include "baselines/Dockerfile.ubuntu1210"
+#include "packages/Dockerfile.jenkins-slave"
+#include "packages/Dockerfile.jenkins-slave.run"
