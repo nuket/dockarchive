@@ -5,6 +5,8 @@
 #// 
 #// Better: see comment by tobstarr
 #// http://crosbymichael.com/dockerfile-best-practices.html
+  
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list
 
