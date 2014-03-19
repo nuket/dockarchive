@@ -17,6 +17,12 @@ maintainer of the images you'll be creating:
 
     echo "MAINTAINER Your Name <email@address.com>" > baselines/Maintainer
 
+You must also specify a user id, so that all images are named <user id>/<image name>:
+
+    echo "Your docker user id" > baselines/UserId
+or
+    echo $USER > baselines/UserId
+
 
 Building Images
 ---------------
