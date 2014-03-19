@@ -5,8 +5,8 @@
 #include "Dockerfile.curl"
 
 #// Install Dart SDK into /usr/lib/dart-sdk.
-RUN curl http://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip > /tmp/dartsdk.zip
-RUN cd /tmp ; unzip dartsdk.zip ; rm -f dartsdk.zip ; mv /tmp/dart-sdk /usr/lib
+RUN curl http://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip > /tmp/dartsdk.zip ; \
+    cd /tmp ; unzip dartsdk.zip ; rm -f dartsdk.zip ; mv /tmp/dart-sdk /usr/lib
 RUN chmod -R a+r /usr/lib/dart-sdk
 RUN find /usr/lib/dart-sdk -type d -exec chmod 755 {} \;
 RUN chmod -R a+x /usr/lib/dart-sdk/bin
