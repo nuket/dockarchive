@@ -1,0 +1,9 @@
+#// linux = 1 ?!? WTF ?
+#// see also http://stackoverflow.com/questions/8677390/what-is-the-reason-for-having-unreserved-identifiers-as-built-in-macros-in-gcc
+
+#undef linux
+
+#// Should definitely use M4 !
+#// Workaround to expand Macros inside quoted strings
+#define STR_EXPAND(tok) #tok
+#define STR(tok) STR_EXPAND(tok)

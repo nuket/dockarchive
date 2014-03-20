@@ -2,11 +2,6 @@
 #define DOCKERFILE_JENKINS_SLAVE_RUN
 
 #include "Dockerfile.jenkins-slave"
-
-#// Should definitely use M4 !
-#// Workaround to expand Macros inside quoted strings
-#define STR_EXPAND(tok) #tok
-#define STR(tok) STR_EXPAND(tok)
  
 CMD ["sudo", "-i", "-u", STR(JENKINS_USERNAME), "java", "-jar", STR(/home/JENKINS_USERNAME/slave/slave.jar)] 
 

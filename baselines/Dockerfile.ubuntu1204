@@ -11,5 +11,6 @@ FROM ubuntu:12.04
 #//
 #// Reference: http://crosbymichael.com/dockerfile-best-practices.html
 
+#include "macros.in"
 #include "packages/Dockerfile.enable-apt-cache"
 #include "Dockerfile.update-upgrade"

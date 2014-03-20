@@ -4,7 +4,8 @@ IMG_NAME=`readlink -f . | xargs basename`
 USER_ID=$(<${TOPDIR}/baselines/UserId)
 echo Building $USER_ID/$IMG_NAME...
 echo 
-cpp -I${TOPDIR} -C Dockerfile.in -o Dockerfile $@
+# -C is required not to interpret // as a comment to be removed. Sadly, /* is still an issue... 
+cpp -C -I${TOPDIR} Dockerfile.in -o Dockerfile $@
 if [ $? -gt 0 ]; then
     exit 1
 fi
