@@ -6,6 +6,7 @@
 #include "Dockerfile.openjdk-6"
 #include "Dockerfile.openjdk-7"
 #include "Dockerfile.dart-sdk"
+#include "Dockerfile.android-sdk"
 
 #// Install jenkins slave.
 #include "Dockerfile.jenkins-user"
