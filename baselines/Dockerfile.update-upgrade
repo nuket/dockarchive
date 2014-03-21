@@ -1,10 +1,10 @@
-#// Ubuntu Release Agnostic update + upgrade.
-#//
-#// Deprecate:
-#// RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-#// 
-#// Better: see comment by tobstarr
-#// http://crosbymichael.com/dockerfile-best-practices.html
+## Ubuntu Release Agnostic update + upgrade.
+##
+## Deprecate:
+## RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+## 
+## Better: see comment by tobstarr
+## http://crosbymichael.com/dockerfile-best-practices.html
   
 ENV DEBIAN_FRONTEND noninteractive
 

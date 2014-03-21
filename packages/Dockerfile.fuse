@@ -1,17 +1,17 @@
 #ifndef DOCKERFILE_FUSE
 #define DOCKERFILE_FUSE
 
-#// Fake a fuse install
-#// from https://gist.github.com/henrik-muehe/6155333
+## Fake a fuse install
+## from https://gist.github.com/henrik-muehe/6155333
 RUN apt-get install libfuse2
 RUN cd /tmp ; mkdir fuseinst
 RUN cd /tmp/fuseinst ; apt-get download fuse
 RUN cd /tmp/fuseinst ; dpkg-deb -x fuse_* .
 RUN cd /tmp/fuseinst ; dpkg-deb -e fuse_*
 RUN cd /tmp/fuseinst ; rm fuse_*.deb
-RUN cd /tmp/fuseinst ; echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst
+RUN cd /tmp/fuseinst ; /bin/echo -en '#!/bin/bash\nexit 0\n' > DEBIAN/postinst
 RUN cd /tmp/fuseinst ; dpkg-deb -b . /fuse.deb
 RUN cd /tmp/fuseinst ; dpkg -i /fuse.deb
 RUN rm -rf /tmp/fuseinst
  
-#endif // DOCKERFILE_FUSE
+#endif ## DOCKERFILE_FUSE

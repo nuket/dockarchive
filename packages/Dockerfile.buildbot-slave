@@ -1,15 +1,15 @@
 #ifndef DOCKERFILE_BUILDBOT_SLAVE
 #define DOCKERFILE_BUILDBOT_SLAVE
 
-#include "Dockerfile.buildbot-common"
+#include "packages/Dockerfile.buildbot-common"
 
-#// Install buildbot-slave.
+## Install buildbot-slave.
 
 RUN pip install sqlalchemy==0.7.10 buildbot_slave
 
-#// Create buildbot-slave configuration, might need to be 
-#// modified by hand to properly find the buildbot-master
-#// address.
+## Create buildbot-slave configuration, might need to be 
+## modified by hand to properly find the buildbot-master
+## address.
 
 #define EXPAND_STRINGIFY(arg) STRINGIFY(arg)
 #define STRINGIFY(arg) #arg
@@ -32,9 +32,9 @@ RUN /bin/echo EXPAND_STRINGIFY(BUILDBOT_SLAVE_MASTER) > "/home/buildbot/master-h
 RUN cd /home/buildbot; sudo -u admin sh -c EXPAND_STRINGIFY(COMBINED)
 
 
-#// Create buildbot-slave supervisord entry.
+## Create buildbot-slave supervisord entry.
 
 RUN /bin/echo -e "[program:buildbot-slave] \ncommand=twistd --nodaemon --no_save -y buildbot.tac \ndirectory=/home/buildbot/slave \nuser=admin \n" > /etc/supervisor/conf.d/buildbot-slave.conf
 
 
-#endif // DOCKERFILE_BUILDBOT_SLAVE
+#endif ## DOCKERFILE_BUILDBOT_SLAVE

@@ -1,9 +1,9 @@
 #ifndef DOCKERFILE_OPENJDK_7
 #define DOCKERFILE_OPENJDK_7
 
-#include "Dockerfile.fuse"
+#include "packages/Dockerfile.fuse"
 
-#// Install openjdk-7-jdk.
+## Install openjdk-7-jdk.
 RUN apt-get install -y openjdk-7-jdk
 
-#endif // DOCKERFILE_OPENJDK_7
+#endif ## DOCKERFILE_OPENJDK_7

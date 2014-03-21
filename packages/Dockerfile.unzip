@@ -1,7 +1,7 @@
 #ifndef DOCKERFILE_UNZIP
 #define DOCKERFILE_UNZIP
 
-#// Install unzip.
+## Install unzip.
 RUN apt-get install -y unzip
 
-#endif // DOCKERFILE_UNZIP
+#endif ## DOCKERFILE_UNZIP

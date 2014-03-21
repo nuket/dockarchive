@@ -1,19 +1,19 @@
 #ifndef DOCKERFILE_JENKINS_SLAVE
 #define DOCKERFILE_JENKINS_SLAVE
 
-#// Install slave build tools.
-#include "Dockerfile.git"
-#include "Dockerfile.openjdk-6"
-#include "Dockerfile.openjdk-7"
-#include "Dockerfile.dart-sdk"
-#include "Dockerfile.android-sdk"
+## Install slave build tools.
+#include "packages/Dockerfile.git"
+#include "packages/Dockerfile.openjdk-6"
+#include "packages/Dockerfile.openjdk-7"
+#include "packages/Dockerfile.dart-sdk"
+#include "packages/Dockerfile.android-sdk"
 
-#// Install jenkins slave.
-#include "Dockerfile.jenkins-user"
-#include "Dockerfile.ssh"
+## Install jenkins slave.
+#include "packages/Dockerfile.jenkins-user"
+#include "packages/Dockerfile.ssh"
 
-RUN mkdir /home/JENKINS_USERNAME/slave
-ADD slave.jar /home/JENKINS_USERNAME/slave/slave.jar
-RUN chown -R JENKINS_USERNAME:JENKINS_USERNAME /home/JENKINS_USERNAME/slave
+RUN mkdir /home/#JENKINS_USERNAME/slave
+ADD slave.jar /home/#JENKINS_USERNAME/slave/slave.jar
+RUN chown -R #JENKINS_USERNAME:#JENKINS_USERNAME /home/#JENKINS_USERNAME/slave
 
-#endif // DOCKERFILE_JENKINS_SLAVE
+#endif ## DOCKERFILE_JENKINS_SLAVE
