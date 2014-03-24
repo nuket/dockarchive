@@ -1,7 +1,7 @@
 #ifndef DOCKERFILE_WGET
 #define DOCKERFILE_WGET
 
-#// Install git.
+## Install wget.
 RUN apt-get install -y wget
 
-#endif // DOCKERFILE_WGET
+#endif ## DOCKERFILE_WGET

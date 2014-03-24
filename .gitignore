@@ -1,5 +1,5 @@
 *~
-*.run
-*.run.sha256
 baselines/Maintainer
+baselines/UserId
+Dockerfile
 

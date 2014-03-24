@@ -1,0 +1,13 @@
+#ifndef DOCKERFILE_SSHD
+#define DOCKERFILE_SSHD
+
+#include "packages/Dockerfile.supervisord"
+#include "packages/Dockerfile.ssh"
+
+RUN mkdir /var/run/sshd
+
+RUN /bin/echo -e "[program:sshd] \ncommand=/usr/sbin/sshd -D \n" > /etc/supervisor/conf.d/sshd.conf
+
+EXPOSE 22
+
+#endif ## DOCKERFILE_SSHD

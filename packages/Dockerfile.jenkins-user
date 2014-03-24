@@ -1,0 +1,11 @@
+#ifndef DOCKERFILE_JENKINS_USER
+#define DOCKERFILE_JENKINS_USER
+
+#include "packages/Dockerfile.sudo"
+
+#define JENKINS_USERNAME jenkins
+#define JENKINS_PASSWORD jenkins
+
+RUN useradd -m -d /home/#JENKINS_USERNAME -p #JENKINS_USERNAME #JENKINS_PASSWORD
+
+#endif ## DOCKERFILE_JENKINS_USER
