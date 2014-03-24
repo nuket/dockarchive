@@ -1,5 +1,5 @@
-#ifndef DOCKERFILE_FUSE
-#define DOCKERFILE_FUSE
+#ifndef(DOCKERFILE_FUSE)
+#define(DOCKERFILE_FUSE)
 
 ## Fake a fuse install
 ## from https://gist.github.com/henrik-muehe/6155333

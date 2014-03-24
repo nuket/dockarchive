@@ -1,5 +1,5 @@
-#ifndef DOCKERFILE_CURL
-#define DOCKERFILE_CURL
+#ifndef(DOCKERFILE_CURL)
+#define(DOCKERFILE_CURL)
 
 ## Install curl.
 RUN apt-get install -y curl

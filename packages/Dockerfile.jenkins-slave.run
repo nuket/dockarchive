@@ -1,7 +1,7 @@
-#ifndef DOCKERFILE_JENKINS_SLAVE_RUN
-#define DOCKERFILE_JENKINS_SLAVE_RUN
+#ifndef(DOCKERFILE_JENKINS_SLAVE_RUN)
+#define(DOCKERFILE_JENKINS_SLAVE_RUN)
 
-#include "packages/Dockerfile.jenkins-slave"
+#include("packages/Dockerfile.jenkins-slave")
  
 CMD ["sudo", "-i", "-u", "#JENKINS_USERNAME", "java", "-jar", "/home/#JENKINS_USERNAME/slave/slave.jar"] 
 

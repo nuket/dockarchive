@@ -1,7 +1,7 @@
-#ifndef DOCKERFILE_OPENJDK_6
-#define DOCKERFILE_OPENJDK_6
+#ifndef(DOCKERFILE_OPENJDK_6)
+#define(DOCKERFILE_OPENJDK_6)
 
-#include "packages/Dockerfile.fuse"
+#include("packages/Dockerfile.fuse")
 
 ## Install openjdk-6-jdk.
 RUN apt-get install -y openjdk-6-jdk

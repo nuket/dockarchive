@@ -1,7 +1,7 @@
-#ifndef DOCKERFILE_ENABLE_APT_CACHE
-#define DOCKERFILE_ENABLE_APT_CACHE
+#ifndef(DOCKERFILE_ENABLE_APT_CACHE)
+#define(DOCKERFILE_ENABLE_APT_CACHE)
 
-#ifdef ENABLE_APT_CACHE
+#ifdef(ENABLE_APT_CACHE)
 
 ## Make apt-get use a proxy to speed up Docker image rebuilds.
 ##

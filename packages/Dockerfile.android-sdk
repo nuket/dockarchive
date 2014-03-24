@@ -1,27 +1,27 @@
-#ifndef DOCKERFILE_ANDROID_SDK
-#define DOCKERFILE_ANDROID_SDK
+#ifndef(DOCKERFILE_ANDROID_SDK)
+#define(DOCKERFILE_ANDROID_SDK)
 
-#include "packages/Dockerfile.curl"
-#include "packages/Dockerfile.expect"
+#include("packages/Dockerfile.curl")
+#include("packages/Dockerfile.expect")
 
-#define ANDROID_SDK_URL "http://dl.google.com/android/android-sdk_r22.6.1-linux.tgz"
-#define ANDROID_SDK_LOCATION /usr/lib/android-sdk
+#define(ANDROID_SDK_URL,"http://dl.google.com/android/android-sdk_r22.6.1-linux.tgz")
+#define(ANDROID_SDK_LOCATION,/usr/lib/android-sdk)
 
 ## Install Android SDK into #ANDROID_SDK_LOCATION.
-RUN cd /tmp ;\
-    curl #ANDROID_SDK_URL | tar xz ;\
+RUN cd /tmp ;@
+    curl #ANDROID_SDK_URL | tar xz ;@
     mv android-sdk-linux #ANDROID_SDK_LOCATION
 
 ## Update SDK
 ## Answering yes trick found here http://stackoverflow.com/a/17863931/1472121
-RUN cd #ANDROID_SDK_LOCATION ;\
-    expect -c '\
-        set timeout -1 ;\
-        spawn #ANDROID_SDK_LOCATION/tools/android update sdk --no-ui ;\
-        expect {\
-            "Do you accept the license" { exp_send "y\\r" ; exp_continue } \
-            eof \
-        } \
+RUN cd #ANDROID_SDK_LOCATION ;@
+    expect -c '@
+        set timeout -1 ;@
+        spawn #ANDROID_SDK_LOCATION/tools/android update sdk --no-ui ;@
+        expect {@
+            "Do you accept the license" { exp_send "y\r" ; exp_continue } @
+            eof @
+        } @
    '
 
 #endif ## DOCKERFILE_ANDROID_SDK

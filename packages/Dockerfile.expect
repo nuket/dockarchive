@@ -1,5 +1,5 @@
-#ifndef DOCKERFILE_EXPECT
-#define DOCKERFILE_EXPECT
+#ifndef(DOCKERFILE_EXPECT)
+#define(DOCKERFILE_EXPECT)
 
 ## Install expect.
 RUN apt-get install -y expect
