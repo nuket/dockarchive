@@ -2,7 +2,6 @@
 #define(DOCKERFILE_ANDROID_SDK)
 
 #include("packages/Dockerfile.curl")
-#include("packages/Dockerfile.expect")
 
 #define(ANDROID_SDK_URL,"http://dl.google.com/android/android-sdk_r22.6.1-linux.tgz")
 #define(ANDROID_SDK_LOCATION,/usr/lib/android-sdk)
