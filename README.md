@@ -20,22 +20,27 @@ maintainer of the images you'll be creating:
 You must also specify a user id, so that all images are named <user id>/<image name>:
 
     echo "Your docker user id" > baselines/UserId
+    
 or
-    echo $USER > baselines/UserId
 
+    echo $USER > baselines/UserId
 
 Building Images
 ---------------
 
+Dockerfiles are assembled using GPP generic preprocessor. 
+See also http://en.nothingisreal.com/wiki/GPP
+To install it, run:
+
+    sudo apt-get install gpp
+
 Then, to build the Docker Images, just go into one of the subdirectories
 and run:
 
-    cpp -I.. Dockerfile.in -o Dockerfile
-    docker build .
+    ../scripts/build.sh
 
-Depending how deep you are in the hierarchy, the `-I..` command
-needs to refer to the root of the hierarchy. Otherwise, the preprocessor
-won't be able to find the files to include.
+Depending how deep you are in the hierarchy, the `../` path
+needs to refer to the root of the hierarchy.
 
 **Recommended:**
 
@@ -55,44 +60,10 @@ And restart the proxy:
 
 When building the Docker Images, run:
 
-    cpp -I.. -DENABLE_APT_CACHE Dockerfile.in -o Dockerfile
-    docker build .
+    ../scripts/build.sh -DENABLE_APT_CACHE=1
 
 This should speed builds up considerably, by caching various .deb 
 packages locally.
-
-
-Hierarchy
----------
-
-    .
-    ├── baselines
-    │   ├── Dockerfile.ubuntu1204
-    │   ├── Dockerfile.update-upgrade
-    │   └── Maintainer
-    ├── build-essentials-4.8
-    │   ├── Dockerfile.build-essentials-4.8
-    │   ├── Dockerfile.in
-    │   ├── qt502linux64-buildslave
-    │   │   ├── Dockerfile.in
-    │   │   └── Dockerfile.qt502linux64
-    │   └── qt511linux64-buildslave
-    │       ├── build.sh
-    │       ├── Dockerfile.in
-    │       └── Dockerfile.qt511linux64
-    ├── packages
-    │   ├── Dockerfile.add-apt-repository
-    │   ├── Dockerfile.buildbot-slave
-    │   ├── Dockerfile.enable-apt-cache
-    │   ├── Dockerfile.git
-    │   ├── Dockerfile.run
-    │   ├── Dockerfile.vnc
-    │   └── Dockerfile.wget
-    └── squid-deb-proxy
-        ├── Dockerfile.in
-        └── run.sh
-
-
 
 License
 -------
@@ -105,4 +76,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-

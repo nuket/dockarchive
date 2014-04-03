@@ -1,5 +1,5 @@
 FROM ubuntu:12.10
-#include "baselines/Maintainer"
+#include("baselines/Maintainer")
 
 ## A means of making sure the Docker image cache gets invalidated
 ## every once in a while, if you need to completely
@@ -9,5 +9,5 @@ FROM ubuntu:12.10
 ## 
 ## Reference: http://crosbymichael.com/dockerfile-best-practices.html
 
-#include "packages/Dockerfile.enable-apt-cache"
-#include "baselines/Dockerfile.update-upgrade"
+#include("packages/Dockerfile.enable-apt-cache")
+#include("baselines/Dockerfile.update-upgrade")

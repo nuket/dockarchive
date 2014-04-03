@@ -1,5 +1,5 @@
-#ifndef DOCKERFILE_SSH
-#define DOCKERFILE_SSH
+#ifndef(DOCKERFILE_SSH)
+#define(DOCKERFILE_SSH)
 
 RUN apt-get install -y ssh
 

@@ -1,8 +1,8 @@
-#ifndef DOCKERFILE_SSHD
-#define DOCKERFILE_SSHD
+#ifndef(DOCKERFILE_SSHD)
+#define(DOCKERFILE_SSHD)
 
-#include "packages/Dockerfile.supervisord"
-#include "packages/Dockerfile.ssh"
+#include("packages/Dockerfile.supervisord")
+#include("packages/Dockerfile.ssh")
 
 RUN mkdir /var/run/sshd
 

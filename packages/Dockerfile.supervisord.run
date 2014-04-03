@@ -1,7 +1,7 @@
-#ifndef DOCKERFILE_SUPERVISORD_RUN
-#define DOCKERFILE_SUPERVISORD_RUN
+#ifndef(DOCKERFILE_SUPERVISORD_RUN)
+#define(DOCKERFILE_SUPERVISORD_RUN)
 
-#include "packages/Dockerfile.supervisord"
+#include("packages/Dockerfile.supervisord")
 
 CMD ["/usr/bin/supervisord", "-n"]
 

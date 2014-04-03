@@ -1,5 +1,5 @@
-#ifndef DOCKERFILE_ADD_APT_REPOSITORY
-#define DOCKERFILE_ADD_APT_REPOSITORY
+#ifndef(DOCKERFILE_ADD_APT_REPOSITORY)
+#define(DOCKERFILE_ADD_APT_REPOSITORY)
 
 ## Adds the ability to call add-apt-repository.
 ## Could add a check on /etc/lsb-release, and install accordingly.
