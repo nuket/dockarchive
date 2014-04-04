@@ -1,15 +1,19 @@
 #ifndef(DOCKERFILE_DART_SDK)
 #define(DOCKERFILE_DART_SDK)
 
+#ifndef(DART_SDK_URL)
+#define(DART_SDK_URL,"http://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip")
+#endif
+#ifndef(DART_SDK_LOCATION)
+#define(DART_SDK_LOCATION,/usr/lib/dart-sdk)
+#endif
+
 #include("packages/Dockerfile.unzip")
 #include("packages/Dockerfile.curl")
 
-#define(DART_SDK_URL,"http://storage.googleapis.com/dart-archive/channels/stable/release/latest/sdk/dartsdk-linux-x64-release.zip")
-#define(DART_SDK_LOCATION,/usr/lib/dart-sdk)
-
 ## Install Dart SDK into #DART_SDK_LOCATION.
-RUN cd /tmp ;@
-    curl #DART_SDK_URL > dartsdk.zip ;@
+WORKDIR /tmp
+RUN curl #DART_SDK_URL > dartsdk.zip ;@
     unzip -q dartsdk.zip ;@
     rm -f dartsdk.zip ;@
     chmod -R a+r dart-sdk ;@

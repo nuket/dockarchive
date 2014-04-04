@@ -1,0 +1,22 @@
+#ifndef(DOCKERFILE_POSTGIS)
+#define(DOCKERFILE_POSTGIS)
+
+#ifndef(PGSQL_USERNAME)
+#define(PGSQL_USERNAME,docker)
+#endif
+#ifndef(PGSQL_PASSWORD)
+#define(PGSQL_PASSWORD,docker)
+#endif
+
+#include("packages/Dockerfile.locales")
+
+## Installations
+RUN apt-get install -y postgresql-9.1 postgresql-contrib-9.1 libgeos-3.3.3 libgeo-proj4-perl postgresql-9.1-postgis
+
+## Open up
+RUN /bin/echo -e "\n# Added by Dockerfile\nhost\tall\tall\t0.0.0.0/0\tmd5\n" >> /etc/postgresql/9.1/main/pg_hba.conf
+RUN sed -i "s/#listen_addresses = 'localhost'[[:space:]]\+/listen_addresses = '*'\t\t\t/" /etc/postgresql/9.1/main/postgresql.conf
+
+EXPOSE 5432
+
+#endif ## DOCKERFILE_POSTGIS
