@@ -1,0 +1,4 @@
+#include("baselines/Dockerfile.ubuntu1210")
+#include("packages/Dockerfile.postgis-db")
+
+#include("packages/Dockerfile.postgis.run")

@@ -1,0 +1,16 @@
+#ifndef(DOCKERFILE_LOCALES)
+#define(DOCKERFILE_LOCALES)
+
+#define(LOCALE,fr_FR)
+#define(ENCODING,UTF-8)
+
+## Reconfigure locales.
+
+RUN locale-gen #LOCALE.#ENCODING
+RUN dpkg-reconfigure locales
+
+ENV LANGUAGE #LOCALE.#ENCODING
+ENV LANG #LOCALE.#ENCODING
+ENV LC_ALL #LOCALE.#ENCODING
+
+#endif ## DOCKERFILE_LOCALES
