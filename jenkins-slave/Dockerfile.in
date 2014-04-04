@@ -5,4 +5,5 @@
 ADD .ssh/ /home/#JENKINS_USERNAME/.ssh
 RUN chown -R #JENKINS_USERNAME:#JENKINS_USERNAME /home/#JENKINS_USERNAME/.ssh 
 
+## Run jenkins slave command
 #include("packages/Dockerfile.jenkins-slave.run")
