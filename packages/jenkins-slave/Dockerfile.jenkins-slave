@@ -13,7 +13,7 @@
 #include("packages/Dockerfile.ssh")
 
 RUN mkdir /home/#JENKINS_USERNAME/slave
-#exec(cp -R #TOPDIR/packages/jenkins-slave/slave.jar build/slave.jar)
+#exec(cp -R -p #TOPDIR/packages/jenkins-slave/slave.jar build/slave.jar)
 ADD slave.jar /home/#JENKINS_USERNAME/slave/slave.jar
 RUN chown -R #JENKINS_USERNAME:#JENKINS_USERNAME /home/#JENKINS_USERNAME/slave
 

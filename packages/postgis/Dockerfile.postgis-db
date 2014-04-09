@@ -1,0 +1,33 @@
+#ifndef(DOCKERFILE_POSTGIS_DB)
+#define(DOCKERFILE_POSTGIS_DB)
+
+#include("packages/postgis/Dockerfile.postgis")
+
+#ifndef(PGSQL_DATABASE)
+#define(PGSQL_DATABASE,docker)
+#endif
+
+## Prepare and fill Database
+
+##USER postgres # shoud be better than sudo -u postgres
+##                but there is a bug that makes us not get postgres additional groups
+##                hence not a member of ssl-cert, which is required by /etc/init.d/postgresql start
+
+RUN sudo -u postgres /bin/bash -c "/usr/lib/postgresql/9.1/bin/postgres --single --config-file=/etc/postgresql/9.1/main/postgresql.conf <<< \"CREATE USER #PGSQL_USERNAME WITH SUPERUSER;\""
+RUN sudo -u postgres /bin/bash -c "/usr/lib/postgresql/9.1/bin/postgres --single --config-file=/etc/postgresql/9.1/main/postgresql.conf <<< \"ALTER USER #PGSQL_USERNAME WITH PASSWORD '#PGSQL_PASSWORD';\""
+RUN sudo -u postgres /bin/bash -c "/usr/lib/postgresql/9.1/bin/postgres --single --config-file=/etc/postgresql/9.1/main/postgresql.conf <<< \"CREATE DATABASE #PGSQL_DATABASE OWNER #PGSQL_USERNAME ENCODING '#ENCODING' LC_COLLATE '#LOCALE.#ENCODING' LC_CTYPE '#LOCALE.#ENCODING';\""
+
+RUN service supervisor start ; supervisorctl restart postgres ; sudo -u postgres psql -v ON_ERROR_STOP=1 -d #PGSQL_DATABASE -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql ; service supervisor stop
+##RUN sudo -u postgres /bin/bash -c "/usr/lib/postgresql/9.1/bin/postgres --single --config-file=/etc/postgresql/9.1/main/postgresql.conf < /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql 
+##RUN /etc/init.d/postgresql start ; sudo -u postgres psql -v ON_ERROR_STOP=1 -d #PGSQL_DATABASE -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql ; /etc/init.d/postgresql stop
+
+RUN service supervisor start ; supervisorctl restart postgres ; sudo -u postgres psql -v ON_ERROR_STOP=1 -d #PGSQL_DATABASE -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql ; service supervisor stop
+##RUN sudo -u postgres /bin/bash -c "/usr/lib/postgresql/9.1/bin/postgres --single --config-file=/etc/postgresql/9.1/main/postgresql.conf < /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql 
+##RUN /etc/init.d/postgresql start ; sudo -u postgres psql -v ON_ERROR_STOP=1 -d #PGSQL_DATABASE -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql ; /etc/init.d/postgresql stop
+
+# External DB definition
+ADD init.sql /tmp/init.sql
+RUN service supervisor start ; supervisorctl restart postgres ; sudo -u postgres psql -v ON_ERROR_STOP=1 -d #PGSQL_DATABASE -f /tmp/init.sql ; service supervisor stop
+##RUN /etc/init.d/postgresql start ; sudo -u postgres psql -v ON_ERROR_STOP=1 -d #PGSQL_DATABASE -f /tmp/init.sql ; /etc/init.d/postgresql stop
+
+#endif ## DOCKERFILE_POSTGIS_DB
