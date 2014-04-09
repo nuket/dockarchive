@@ -1,8 +1,0 @@
-#ifndef(DOCKERFILE_POSTGIS_RUN)
-#define(DOCKERFILE_POSTGIS_RUN)
-
-#include("packages/Dockerfile.postgis")
-
-CMD ["sudo", "-u", "postgres", "/usr/lib/postgresql/9.1/bin/postgres", "--config-file=/etc/postgresql/9.1/main/postgresql.conf"]
-
-#endif ## DOCKERFILE_POSTGIS_RUN

@@ -9,10 +9,11 @@
 #include("packages/Dockerfile.android-sdk")
 
 ## Install jenkins slave.
-#include("packages/Dockerfile.jenkins-user")
+#include("packages/jenkins-slave/Dockerfile.jenkins-user")
 #include("packages/Dockerfile.ssh")
 
 RUN mkdir /home/#JENKINS_USERNAME/slave
+#exec(cp -R -p #TOPDIR/packages/jenkins-slave/slave.jar build/slave.jar)
 ADD slave.jar /home/#JENKINS_USERNAME/slave/slave.jar
 RUN chown -R #JENKINS_USERNAME:#JENKINS_USERNAME /home/#JENKINS_USERNAME/slave
 

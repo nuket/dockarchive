@@ -1,4 +1,7 @@
 #include("baselines/Dockerfile.ubuntu1210")
-#include("packages/Dockerfile.postgis-db")
 
-#include("packages/Dockerfile.postgis.run")
+#exec(cp -p init.sql build/init.sql)
+
+#include("packages/postgis/Dockerfile.postgis-db")
+
+#include("packages/postgis/Dockerfile.postgis.run")
