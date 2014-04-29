@@ -1,6 +1,3 @@
-#ifndef(DOCKERFILE_ENABLE_APT_CACHE)
-#define(DOCKERFILE_ENABLE_APT_CACHE)
-
 #ifdef(ENABLE_APT_CACHE)
 
 ## Make apt-get use a proxy to speed up Docker image rebuilds.
@@ -17,5 +14,3 @@ RUN /sbin/ip route | awk '/default/ { print "Acquire::http::Proxy \"http://"$3":
 ## TODO: Possibly add `echo` of the above line to .bashrc
 
 #endif ## ENABLE_APT_CACHE
-
-#endif ## DOCKERFILE_ENABLE_APT_CACHE
