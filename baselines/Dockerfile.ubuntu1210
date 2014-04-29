@@ -1,3 +1,6 @@
+#ifndef(BASELINE)
+#define(BASELINE)
+
 FROM ubuntu:12.10
 #include("baselines/Maintainer")
 
@@ -9,5 +12,7 @@ FROM ubuntu:12.10
 ## 
 ## Reference: http://crosbymichael.com/dockerfile-best-practices.html
 
-#include("packages/Dockerfile.enable-apt-cache")
+#include("baselines/Dockerfile.enable-apt-cache")
 #include("baselines/Dockerfile.update-upgrade")
+
+#endif ## BASELINE
