@@ -1,0 +1,31 @@
+#ifndef(DOCKERFILE_TOMCAT_7_TOMCAT)
+#define(DOCKERFILE_TOMCAT_7_TOMCAT)
+
+#include("packages/tomcat-7/Dockerfile.tomcat-7")
+
+#ifndef(TOMCAT_7_INSTANCE)
+#define(TOMCAT_7_INSTANCE,tomcat)
+#endif
+
+USER #TOMCAT_USERNAME
+
+## Create a Tomcat instance #TOMCAT_7_INSTANCE
+#define(CATALINA_BASE,/home/#TOMCAT_USERNAME/#TOMCAT_7_INSTANCE)
+RUN mkdir -p #CATALINA_BASE ; cd #CATALINA_BASE ; mkdir lib logs webapps work temp
+RUN cp -pr #TOMCAT_7_LOCATION/conf #CATALINA_BASE
+
+## Make it runnable under Supervisor
+##                                      (inspiration : http://serverfault.com/questions/425132/controlling-tomcat-with-supervisor)
+#exec(cp -p #TOPDIR/packages/tomcat-7/run_tomcat.sh build/run_tomcat.sh)
+ADD run_tomcat.sh #CATALINA_BASE/run_tomcat.sh
+
+USER root
+
+#exec(cp -p #TOPDIR/packages/tomcat-7/tomcat.conf build/tomcat.conf)
+ADD tomcat.conf /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf
+RUN sed -i 's,__CATALINA_HOME__,#TOMCAT_7_LOCATION,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/run_tomcat.sh 
+RUN sed -i 's,__CATALINA_BASE__,#CATALINA_BASE,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/run_tomcat.sh
+RUN sed -i 's,__TOMCAT_USERNAME__,#TOMCAT_USERNAME,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/run_tomcat.sh
+RUN sed -i 's,__TOMCAT_7_INSTANCE__,#TOMCAT_7_INSTANCE,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/run_tomcat.sh
+
+#endif ## DOCKERFILE_TOMCAT_7_TOMCAT

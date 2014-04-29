@@ -1,0 +1,13 @@
+#include("baselines/Dockerfile.ubuntu1210")
+
+#include("packages/Dockerfile.openjdk-7")
+
+## Create a Tomcat instance named "tomcat7"
+#define(TOMCAT_7_INSTANCE,tomcat7)
+#include("packages/tomcat-7/Dockerfile.tomcat-7-instance")
+
+## Add a ROOT context app
+RUN sudo -u #TOMCAT_USERNAME cp -R #TOMCAT_7_LOCATION/webapps/ROOT #CATALINA_BASE/webapps
+
+## Run through Supervisor
+#include("packages/Dockerfile.supervisord.run")
