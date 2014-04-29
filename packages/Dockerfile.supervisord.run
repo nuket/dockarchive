@@ -3,6 +3,6 @@
 
 #include("packages/Dockerfile.supervisord")
 
-CMD ["/usr/bin/supervisord", "-n"]
+CMD ["/usr/bin/supervisord", "--nodaemon", "--configuration=/etc/supervisor/supervisord.conf"]
 
 #endif ## DOCKERFILE_SUPERVISORD_RUN

@@ -1,0 +1,17 @@
+#ifndef(DOCKERFILE_TOMCAT_USER)
+#define(DOCKERFILE_TOMCAT_USER)
+
+#ifndef(TOMCAT_USERNAME)
+#define(TOMCAT_USERNAME,tomcat)
+#endif
+#ifndef(TOMCAT_PASSWORD)
+#define(TOMCAT_PASSWORD,tomcat)
+#endif
+
+#include("packages/Dockerfile.sudo")
+
+## Create user.
+
+RUN useradd -m -d /home/#TOMCAT_USERNAME -p #TOMCAT_USERNAME #TOMCAT_PASSWORD -s /bin/bash -U
+
+#endif ## DOCKERFILE_TOMCAT_USER
