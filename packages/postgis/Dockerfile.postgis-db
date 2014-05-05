@@ -23,6 +23,6 @@ RUN service supervisor start ; supervisorctl restart postgres ; sudo -u postgres
 
 # External DB definition
 ADD init.sql /tmp/init.sql
-RUN service supervisor start ; supervisorctl restart postgres ; sudo -u postgres psql ON_ERROR_STOP=1 -d #PGSQL_DATABASE -f /tmp/init.sql ; service supervisor stop
+RUN service supervisor start ; supervisorctl restart postgres ; sudo -u postgres psql -d #PGSQL_DATABASE -f /tmp/init.sql ; service supervisor stop
 
 #endif ## DOCKERFILE_POSTGIS_DB

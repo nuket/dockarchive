@@ -12,12 +12,12 @@
 
 ## Install Android SDK into #ANDROID_SDK_LOCATION.
 WORKDIR /tmp
-RUN curl #ANDROID_SDK_URL | tar xz ;@
+RUN curl #ANDROID_SDK_URL | tar xz ;##
     mv android-sdk-linux #ANDROID_SDK_LOCATION
 
 ## Update SDK
 ## Answering yes trick found here http://stackoverflow.com/a/21910110/1472121
-RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | @
+RUN ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | ##
     #ANDROID_SDK_LOCATION/tools/android update sdk --no-ui --filter platform-tool,android-19,sysimg-19,build-tools
 
 #endif ## DOCKERFILE_ANDROID_SDK

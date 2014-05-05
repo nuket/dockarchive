@@ -23,9 +23,10 @@ echo
 # Using GPP preprocessor to produce Dockerfile, configured so that :
 # Macros and meta-macros like '#macro' or '#macro(arg1, arg2)'
 # Line-comments begin with '##'
-# The escape character is '@'. A '@@' will produce '@'.
-# '@'as a last character of a line will remove newline from output.
-gpp -U "#" "" "(" "," ")" "(" ")" "#" "@" +c "##" "\n" +c "@" "\n" -I${TOPDIR} -o build/Dockerfile -x -DTOPDIR=${TOPDIR} ${GPP_ARGS} Dockerfile.in 
+# '##'as a last character of a line will remove newline from output.
+# Comments start with '#*' and end with '*#'
+# The escape character is '~', '~~' will produce '~'.
+gpp -U "#" "" "(" "," ")" "(" ")" "#" "~" +c "##" "\n" +c "#*" "*#" -I${TOPDIR} -o build/Dockerfile -x -DTOPDIR=${TOPDIR} ${GPP_ARGS} Dockerfile.in 
 if [ $? -gt 0 ]; then
     exit 1
 fi

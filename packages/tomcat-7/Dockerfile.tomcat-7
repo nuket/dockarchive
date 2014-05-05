@@ -17,7 +17,7 @@
 ## Install Tomcat into #TOMCAT_7_LOCATION.
 WORKDIR /tmp
 USER #TOMCAT_USERNAME
-RUN curl #TOMCAT_7_URL | tar xz ;@
+RUN curl #TOMCAT_7_URL | tar xz ;##
     mv apache-tomcat-7* #TOMCAT_7_LOCATION
 
 USER root

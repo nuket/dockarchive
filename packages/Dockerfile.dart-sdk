@@ -13,13 +13,13 @@
 
 ## Install Dart SDK into #DART_SDK_LOCATION.
 WORKDIR /tmp
-RUN curl #DART_SDK_URL > dartsdk.zip ;@
-    unzip -q dartsdk.zip ;@
-    rm -f dartsdk.zip ;@
-    chmod -R a+r dart-sdk ;@
-    find dart-sdk -type d -exec chmod 755 {} \; ;@
-    chmod -R a+x dart-sdk/bin ;@
-    cp -R dart-sdk #DART_SDK_LOCATION ;@
+RUN curl #DART_SDK_URL > dartsdk.zip ;##
+    unzip -q dartsdk.zip ;##
+    rm -f dartsdk.zip ;##
+    chmod -R a+r dart-sdk ;##
+    find dart-sdk -type d -exec chmod 755 {} \; ;##
+    chmod -R a+x dart-sdk/bin ;##
+    cp -R dart-sdk #DART_SDK_LOCATION ;##
     rm -rf dart-sdk
 
 #endif ## DOCKERFILE_DART_SDK
