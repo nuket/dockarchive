@@ -19,17 +19,22 @@ RUN cp -pr #TOMCAT_7_LOCATION/conf #CATALINA_BASE
 
 ## Make it runnable under Supervisor
 ##                                      (inspiration : http://serverfault.com/questions/425132/controlling-tomcat-with-supervisor)
-#exec(cp -p #TOPDIR/packages/tomcat-7/run_tomcat.sh build/run_tomcat.sh)
-ADD run_tomcat.sh #CATALINA_BASE/run_tomcat.sh
+RUN /bin/echo -e "#!/bin/bash\nsudo supervisorctl \$1 #TOMCAT_7_INSTANCE" > #CATALINA_BASE/tomcat7.sh
 
 USER root
+#exec(cp -p #TOPDIR/packages/tomcat-7/tomcat_in_supervisor.sh build/tomcat_in_supervisor.sh)
+ADD tomcat_in_supervisor.sh #CATALINA_BASE/tomcat_in_supervisor.sh
+RUN chown #TOMCAT_USERNAME:#TOMCAT_USERNAME #CATALINA_BASE/tomcat_in_supervisor.sh
+#exec(cp -p #TOPDIR/packages/tomcat-7/sudo build/sudo)
+ADD sudo /etc/sudoers.d/#TOMCAT_7_INSTANCE
+RUN chmod 0440 /etc/sudoers.d/#TOMCAT_7_INSTANCE
 
 #exec(cp -p #TOPDIR/packages/tomcat-7/tomcat.conf build/tomcat.conf)
 ADD tomcat.conf /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf
-RUN sed -i 's,__CATALINA_HOME__,#TOMCAT_7_LOCATION,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/run_tomcat.sh 
-RUN sed -i 's,__CATALINA_BASE__,#CATALINA_BASE,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/run_tomcat.sh
-RUN sed -i 's,__TOMCAT_USERNAME__,#TOMCAT_USERNAME,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/run_tomcat.sh
-RUN sed -i 's,__TOMCAT_7_INSTANCE__,#TOMCAT_7_INSTANCE,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/run_tomcat.sh
+RUN sed -i 's,__CATALINA_HOME__,#TOMCAT_7_LOCATION,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/tomcat_in_supervisor.sh 
+RUN sed -i 's,__CATALINA_BASE__,#CATALINA_BASE,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/tomcat_in_supervisor.sh
+RUN sed -i 's,__TOMCAT_USERNAME__,#TOMCAT_USERNAME,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/tomcat_in_supervisor.sh /etc/sudoers.d/#TOMCAT_7_INSTANCE
+RUN sed -i 's,__TOMCAT_7_INSTANCE__,#TOMCAT_7_INSTANCE,g' /etc/supervisor/conf.d/#TOMCAT_7_INSTANCE.conf #CATALINA_BASE/tomcat_in_supervisor.sh /etc/sudoers.d/#TOMCAT_7_INSTANCE 
 RUN sed -i 's,8080,#TOMCAT_7_INSTANCE_PORTS#**#80,g' #CATALINA_BASE/conf/server.xml
 RUN sed -i 's,8005,#TOMCAT_7_INSTANCE_PORTS#**#05,g' #CATALINA_BASE/conf/server.xml
 RUN sed -i 's,8009,#TOMCAT_7_INSTANCE_PORTS#**#09,g' #CATALINA_BASE/conf/server.xml

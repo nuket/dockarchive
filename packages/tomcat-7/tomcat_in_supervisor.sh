@@ -17,11 +17,12 @@ export CATALINA_HOME=__CATALINA_HOME__
 #                   of a Catalina installation.  If not present, resolves to
 #                   the same directory that CATALINA_HOME points to.
 export CATALINA_BASE=__CATALINA_BASE__
+export CATALINA_PID=__CATALINA_BASE__/catalina.pid
 
 # Uncomment to increase Tomcat's maximum heap allocation
 # export JAVA_OPTS=-Xmx512M $JAVA_OPTS
 
-__CATALINA_HOME__/bin/catalina.sh start
+source __CATALINA_HOME__/bin/catalina.sh
 
 # Allow any signal which would kill a process to stop Tomcat
 trap shutdown HUP INT QUIT ABRT KILL ALRM TERM TSTP

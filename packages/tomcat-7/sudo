@@ -1,0 +1,3 @@
+__TOMCAT_USERNAME__ ALL = (root) NOPASSWD:/usr/bin/supervisorctl start __TOMCAT_7_INSTANCE__
+__TOMCAT_USERNAME__ ALL = (root) NOPASSWD:/usr/bin/supervisorctl stop __TOMCAT_7_INSTANCE__
+__TOMCAT_USERNAME__ ALL = (root) NOPASSWD:/usr/bin/supervisorctl status __TOMCAT_7_INSTANCE__
