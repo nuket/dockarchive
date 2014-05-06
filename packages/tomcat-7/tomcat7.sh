@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo supervisorctl $1 
+sudo /usr/bin/supervisorctl $1

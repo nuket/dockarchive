@@ -19,7 +19,7 @@ RUN cp -pr #TOMCAT_7_LOCATION/conf #CATALINA_BASE
 
 ## Make it runnable under Supervisor
 ##                                      (inspiration : http://serverfault.com/questions/425132/controlling-tomcat-with-supervisor)
-RUN /bin/echo -e "#!/bin/bash\nsudo supervisorctl \$1 #TOMCAT_7_INSTANCE" > #CATALINA_BASE/tomcat7.sh
+RUN /bin/echo -e "#!/bin/bash\nsudo supervisorctl \$1 #TOMCAT_7_INSTANCE" > #CATALINA_BASE/tomcat7.sh ; chmod 755 #CATALINA_BASE/tomcat7.sh
 
 USER root
 #exec(cp -p #TOPDIR/packages/tomcat-7/tomcat_in_supervisor.sh build/tomcat_in_supervisor.sh)
