@@ -1,0 +1,5 @@
+#include("baselines/Dockerfile.ubuntu1210")
+#include("packages/jenkins-slave/Dockerfile.jenkins-slave")
+
+## Run jenkins slave command
+#include("packages/jenkins-slave/Dockerfile.jenkins-slave.run")

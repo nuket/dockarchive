@@ -1,6 +1,8 @@
-#ifndef DOCKERFILE_SUPERVISORD_RUN
-#define DOCKERFILE_SUPERVISORD_RUN
+#ifndef(DOCKERFILE_SUPERVISORD_RUN)
+#define(DOCKERFILE_SUPERVISORD_RUN)
 
-CMD ["/usr/bin/supervisord", "-n"]
+#include("packages/Dockerfile.supervisord")
 
-#endif // DOCKERFILE_SUPERVISORD_RUN
+CMD ["/usr/bin/supervisord", "--nodaemon", "--configuration=/etc/supervisor/supervisord.conf"]
+
+#endif ## DOCKERFILE_SUPERVISORD_RUN

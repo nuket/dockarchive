@@ -1,0 +1,8 @@
+#ifndef(DOCKERFILE_POSTGIS_RUN)
+#define(DOCKERFILE_POSTGIS_RUN)
+
+#include("packages/postgis/Dockerfile.postgis")
+
+CMD ["service", "supervisor", "start"]
+
+#endif ## DOCKERFILE_POSTGIS_RUN

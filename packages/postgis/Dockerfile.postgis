@@ -1,0 +1,31 @@
+#ifndef(DOCKERFILE_POSTGIS)
+#define(DOCKERFILE_POSTGIS)
+
+#ifndef(PGSQL_USERNAME)
+#define(PGSQL_USERNAME,docker)
+#endif
+#ifndef(PGSQL_PASSWORD)
+#define(PGSQL_PASSWORD,docker)
+#endif
+
+#include("packages/Dockerfile.locales")
+#include("packages/Dockerfile.supervisord")
+
+## Installations
+RUN apt-get install -y postgresql-9.1 postgresql-contrib-9.1 libgeos-3.3.3 libgeo-proj4-perl postgresql-9.1-postgis
+
+## Make it runnable under Supervisor
+##                                 (inspiration : http://stackoverflow.com/questions/11092358/running-postgresql-with-supervisord)
+#exec(cp -p #TOPDIR/packages/postgis/run_postgresql.sh build/run_postgresql.sh)
+ADD run_postgresql.sh /usr/local/bin/run_postgresql.sh
+#exec(cp -p #TOPDIR/packages/postgis/postgresql.conf build/postgresql.conf)
+ADD postgresql.conf /etc/supervisor/conf.d/postgresql.conf
+RUN sed -i "s/^auto$/manual/g" /etc/postgresql/9.1/main/start.conf
+
+## Open up
+RUN /bin/echo -e "\n# Added by Dockerfile\nhost\tall\tall\t0.0.0.0/0\tmd5\n" >> /etc/postgresql/9.1/main/pg_hba.conf
+RUN sed -i "s/#listen_addresses = 'localhost'[[:space:]]\+/listen_addresses = '*'\t\t\t/" /etc/postgresql/9.1/main/postgresql.conf
+
+EXPOSE 5432
+
+#endif ## DOCKERFILE_POSTGIS

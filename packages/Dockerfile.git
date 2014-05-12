@@ -1,7 +1,7 @@
-#ifndef DOCKERFILE_GIT
-#define DOCKERFILE_GIT
+#ifndef(DOCKERFILE_GIT)
+#define(DOCKERFILE_GIT)
 
-#// Install git.
+## Install git.
 RUN apt-get install -y git
 
-#endif // DOCKERFILE_GIT
+#endif ## DOCKERFILE_GIT

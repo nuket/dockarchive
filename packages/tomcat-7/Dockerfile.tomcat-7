@@ -1,0 +1,24 @@
+#ifndef(DOCKERFILE_TOMCAT_7)
+#define(DOCKERFILE_TOMCAT_7)
+
+#ifndef(TOMCAT_7_URL)
+#define(TOMCAT_7_URL,"http://mir2.ovh.net/ftp.apache.org/dist/tomcat/tomcat-7/v7.0.53/bin/apache-tomcat-7.0.53.tar.gz")
+#endif
+
+#include("packages/tomcat-7/Dockerfile.tomcat-user")
+
+#ifndef(TOMCAT_7_LOCATION)
+#define(TOMCAT_7_LOCATION,/home/#TOMCAT_USERNAME/apache-tomcat-7)
+#endif
+
+#include("packages/Dockerfile.supervisord")
+#include("packages/Dockerfile.curl")
+
+## Install Tomcat into #TOMCAT_7_LOCATION.
+WORKDIR /tmp
+USER #TOMCAT_USERNAME
+RUN curl #TOMCAT_7_URL | tar xz ;##
+    mv apache-tomcat-7* #TOMCAT_7_LOCATION
+
+USER root
+#endif ## DOCKERFILE_TOMCAT_7

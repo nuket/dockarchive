@@ -1,0 +1,17 @@
+#ifndef(DOCKERFILE_TOMCAT_USER)
+#define(DOCKERFILE_TOMCAT_USER)
+
+#ifndef(TOMCAT_USERNAME)
+#define(TOMCAT_USERNAME,tomcat)
+#endif
+#ifndef(TOMCAT_PASSWORD)
+#define(TOMCAT_PASSWORD,tomcat)
+#endif
+
+#include("packages/Dockerfile.sudo")
+
+## Create user.
+
+RUN useradd -m -d /home/#TOMCAT_USERNAME -p $(perl -e 'print crypt("#TOMCAT_PASSWORD", "#TOMCAT_PASSWORD"),"\n"') -s /bin/bash -U #TOMCAT_USERNAME
+
+#endif ## DOCKERFILE_TOMCAT_USER

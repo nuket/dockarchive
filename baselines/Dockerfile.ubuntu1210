@@ -1,7 +1,7 @@
 #ifndef(BASELINE)
 #define(BASELINE)
 
-FROM ubuntu:12.04
+FROM ubuntu:12.10
 #include("baselines/Maintainer")
 
 ## A means of making sure the Docker image cache gets invalidated
@@ -10,8 +10,6 @@ FROM ubuntu:12.04
 ##
 ## Also possible with `docker --no-cache`
 ## 
-## ENV LAST_UPDATED 2013-09-15
-##
 ## Reference: http://crosbymichael.com/dockerfile-best-practices.html
 
 #include("baselines/Dockerfile.enable-apt-cache")

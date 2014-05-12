@@ -1,0 +1,23 @@
+#ifndef(DOCKERFILE_JENKINS_SLAVE)
+#define(DOCKERFILE_JENKINS_SLAVE)
+
+## Install slave build tools.
+#include("packages/Dockerfile.git")
+#include("packages/Dockerfile.openjdk-6")
+#include("packages/Dockerfile.openjdk-7")
+#include("packages/Dockerfile.dart-sdk")
+#include("packages/Dockerfile.android-sdk")
+
+## This is for Selenium tests
+#include("packages/Dockerfile.firefox")
+
+## Install jenkins slave.
+#include("packages/jenkins-slave/Dockerfile.jenkins-user")
+#include("packages/Dockerfile.ssh")
+
+RUN mkdir /home/#JENKINS_USERNAME/slave
+#exec(cp -R -p #TOPDIR/packages/jenkins-slave/slave.jar build/slave.jar)
+ADD slave.jar /home/#JENKINS_USERNAME/slave/slave.jar
+RUN chown -R #JENKINS_USERNAME:#JENKINS_USERNAME /home/#JENKINS_USERNAME/slave
+
+#endif ## DOCKERFILE_JENKINS_SLAVE
