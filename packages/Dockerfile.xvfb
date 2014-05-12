@@ -1,0 +1,7 @@
+#ifndef(DOCKERFILE_XVFB)
+#define(DOCKERFILE_XVFB)
+
+## Install xvfb.
+RUN apt-get install -y xvfb
+
+#endif ## DOCKERFILE_XVFB

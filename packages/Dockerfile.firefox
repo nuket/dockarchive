@@ -1,0 +1,9 @@
+#ifndef(DOCKERFILE_FIREFOX)
+#define(DOCKERFILE_FIREFOX)
+
+#include("packages/Dockerfile.xvfb")
+
+## Install firefox.
+RUN apt-get install -y firefox
+
+#endif ## DOCKERFILE_FIREFOX
